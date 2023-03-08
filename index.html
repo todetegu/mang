@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<head>
+	<title>Tõde ja Tegu</title>
+	<style>
+	html{ font-size:2em;  background: #009FA7}
+		body {
+			font-family: 'josefin sans';
+    		 font-size: 2em;
+    		 font-weight: 700;
+    		 color: #0CC490;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		h1, h3, #game-area, button {
+			text-align: center;
+			margin: 10px;
+		}
+			  .footer {
+			  margin-top: 3rem;
+				 text-align: center;
+				color: #0CC490;
+				font-family: 'josefin sans';
+				font-size: 1em !important;
+				font-weight: 300;
+				width: 100%;
+		}
+		.container {
+			align-items: center !important;
+			text-align: center;
+			justify-content: center;
+			width: 29rem;
+			height: 100%;
+			display: flex;
+        	flex-direction: column;
+		}
+		.button {
+		 background-color: white;
+		color: #0CC490;
+		padding: 15px;
+		border-radius: 10rem;
+		 border: none;
+		 margin-top: 3rem;
+		 cursor: pointer;
+		 font-family: 'josefin sans', sans-serif;
+		font-weight: 700;
+		font-size: 2em;
+		width: 15rem;
+		}
+		.result {
+		margin: auto;
+  margin-top: 1em;
+  width: 22rem;
+  height: 15rem;
+  background-color: white;
+  border: solid;
+  border-width: 0.4em;
+  border-radius: 1em;
+  border-color: #FEE488;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3em 0.3em 0.3em 0.3em;
+		}
+		.reeglid {
+			color: white;
+			font-family: 'josefin sans';
+    		 font-size: 0.6em !important;
+    		 font-weight: 500;
+    		   text-align: justify;
+				text-align-last: left;
+    		 
+		}
+		.logo {
+		margin-top: 2em;
+		width: 100%;
+    		 
+		}
+		
+		@media only screen and (max-width: 500px) {
+    .reeglid {
+    	width: 100%;
+       font-size: 1.5em !important;
+       display: block;
+       
+    }
+    .container {
+    		 padding: 0 1rem;
+			align-items: center !important;
+			text-align: center;
+			justify-content: center;
+			width: 500px;
+			height: 100%;
+			display: flex;
+        	
+        	display: block;
+    display: inline-block;
+		}
+	.logo {
+		margin-top: 5em;
+    		 
+		}
+}
+	
+	
+    		 
+
+	
+	</style>
+</head>
+<body>
+	<div class="container">
+		<img class="logo" src="tode_tegu.svg" alt="Tõde Tegu" width="750rem" height="auto">
+		<p class="reeglid">Reeglid: Kui ei soovi vastata siis võta lonks. Kui teist korda järjest ei taha vastata/tegu teha jood oma joogi lõpuni. 3 korda järjest ei saa vastamata või tegu tegemata jätta.</p>
+		
+		<div class="result" id="result"></div>
+		<button class="button" onclick="play()">Mängi</button>
+		<div class="footer">
+      <p>Looja: Silja Mägi <br>
+      www.sidisain.eu</p>
+    </div>
+	</div>
+	
+	<script>
+		function play() {
+			// Define arrays of questions and dares
+			var truths = [
+				"Mis on sinu kõige suurem hirm?",
+				"Milline on olnud sinu halvim suhe ja miks?",
+				"Mis on sinu kõige ebameeldivam harjumus?",
+				"Kas oled kunagi kellegi peale kade olnud?",
+				"Millal viimati armusid?",
+				"Milline on olnud sinu halvim seksuaalne kogemus?",
+				"Mis on sinu kõige piinlikum hetk?",
+				"Kas oled kunagi kellelegi valetanud, et vältida probleeme? Too näide.",
+				"Milline on olnud sinu elu kõige suurem pettumus?",
+				"Mis on kõige ebamoraalsem asi, mida oled teinud?",
+				"Millal viimati nuttisid ja miks?",
+				"Mis on sinu lemmik seksuaalne fantaasia?",
+				"Kas oled kunagi kellegi vastu viha tundnud? Kelle ja miks?",
+				"Milline on sinu kõige piinlikum seksuaalne kogemus?",
+				"Millal viimati midagi varastasid? Mis see oli?",
+				"Mis on sinu suurim saladus?",
+				"Kas oled kunagi armunud olnud kahte inimesse korraga?",
+				"Milline on sinu kõige piinlikum kogemus joobes olles?",
+				"Millal viimati kellegi peale armukade olid?",
+				"Mis on sinu arvates kõige olulisem omadus suhtes?",
+				"Mis on sinu kõige hullem hirm seoses suhtega?",
+				"Millal viimati seksisid ja kellega?",
+				"Mis on sinu kõige piinlikum hetk voodis?",
+				"Kas oled kunagi kellegi peale armukade olnud ilma põhjuseta?",
+				"Milline on olnud sinu elu kõige õnnelikum hetk?",
+				"Mis on sinu lemmik seksuaalne poos?",
+				"Kas oled kunagi kellegagi flirdinud, teades, et ta on su sõbra partner?",
+				"Millal viimati kedagi solvasid ja miks?",
+				"Mis on sinu arvates kõige olulisem omadus partneris?",
+				"Kas oled kunagi kellelegile vale nime andnud?",
+				"Millal viimati kellegagi suudlesid ja kes see oli?",
+				"Mis on sinu kõige piinlikum hetk suhte alguses?",
+				"Kas oled kunagi kellegi peale armukade olnud pärast seda, kui suhe oli juba lõppenud?",
+				"Milline on olnud sinu kõige romantilisem hetk?",
+				"Mis on sinu kõige suurem seksuaalne soov?",
+				"Milline on olnud sinu halvim seksuaalne kogemus?",
+				"Millal sa viimati valetasid ja miks?",
+				"Milline on olnud suurim vale, mida oled rääkinud?",
+				"Mis on kõige raskem otsus, mille oled pidanud langetama?",
+				"Mis on sinu elu suurim saavutus?",
+				"Kas oled kunagi valetanud, et teda kaitsta? Täpsusta",
+				"Kõige lähedasem suhe, mis sul olnud on?",
+				"Kas oled kunagi kellegisse armunud olnud, kes on juba suhtes?",
+				"Mis on olnud sinu elu kõige raskem aeg?",
+				"Kui saaksid aega tagasi pöörata, siis mis hetke oma elust muudaksid?",
+				"Milline on olnud sinu elu kõige naljakam hetk?",
+				"Milline on sinu elu suurim unistus?",
+				"Mis on olnud sinu suurim pettumus elus?",
+				"Kui saaksid valida, siis mis superjõud sul oleks? Vastavad ka kõik teised",
+				"Milline on olnud sinu elu kõige emotsionaalsem hetk?",
+				"Kui sul oleks võimalus kohtuda ühe inimesega minevikust või tulevikust, siis kes see oleks?",
+				"Kui saaksid elada ühe päeva jooksul kellegi teise elu, siis kelle oma valid?",
+				"Kas oled kunagi kelleltki andeks palunud? Kellelt, miks?",
+				"Milline on olnud sinu suurim ebaõnnestumine elus?",
+				"Kui saaksid teha ühe asja ilma tagajärgedeta, siis mida teeksid?",
+				"Mis on olnud sinu kõige piinlikum hetk tööl või koolis?",
+				"Milline on olnud su kõige piinlikum hetk avalikus kohas?",
+				"Milline on olnud su kõige naljakam kogemus sõpradega?",
+				"Milline on olnud su kõige raskem töö või õppeaine ja miks?",
+				"Milline on olnud sinu elu parim seiklus?",
+				"Kui saaksid veeta ühe päeva kellegagi minevikust või olevikust, siis kes see oleks ja mida teeksite?",
+				"Milline on olnud su kõige meeldejäävam reis ja miks?",
+				"Kui saaksid kogu elu jooksul teha ainult ühte tööd, siis milline see oleks?",
+				"Mis on sinu jaoks kõige tähtsam asi elus?",
+				"Millised on sinu suurimad hirmud ja kuidas oled nendega toime tulnud?",
+				"Milline on olnud su kõige suurem väljakutse seni ja kuidas sellega hakkama said?",
+				"Millised on sinu tulevikuplaanid ja unistused?",
+				"Millised on sinu lemmik harrastused ja miks? Vastavad ka teised mängijad",
+				"Kui sul oleks võimalik õppida ükskõik millist oskust täiuslikkusele, siis milline see oleks?",
+				"Kui sul oleks võimalik elada ükskõik millises maailma paigas, siis kus sa elaksid ja miks?",
+				"Milline on sinu kõige lähedasem sõprus ja miks see sulle nii oluline on?",
+				"Millised on sinu kõige suuremad eelarvamused ja kuidas oled püüdnud nendest lahti saada?",
+				"Milline on olnud sinu kõige ebameeldivam töökoht ja miks?",
+				"Mis on sinu lemmikfilm?",
+				"Mis on sinu lemmik seriaal?",
+				"Mis on sinu lemmik komöödia seriaal?",
+				"Kui sul oleks võimalik elada ükskõik millise ajastu jooksul, siis millises ajastus sa tahaksid elada ja miks?",
+				"Millised on sinu lemmikmuusikastiilid ja -artistid ning miks sa neid armastad?",
+				"Kui sul oleks võimalik õppida ükskõik millist keelt, siis milline see oleks ja miks? Vastavad kõik mängijad",
+				"Oled sa kunagi puuksu lasknud ja kellegi teise süüks ajanud?",
+				"Kas sa vahel ilastad magamise ajal?",
+				"Oled sa kunagi täiskasvanuna kogemata püksi teinud?",
+				"Kas sa vahel nokid nina?",
+				"Kas sa annaks oma koera ära miljoni eest? Kui sinul pole koera siis küsimus läheb järgmisele, kuni jõuame inimeseni kelle on koer",
+				"Mis värvi aluspesu sul praegu seljas on?",
+				"Kõige kasutum fakt mida sa tead?",
+				"Kui sul saab wc-paber otsa, kas sa pühiksid tühja rulliga?",
+				"Kui saaksite elu lõpuni öelda ainult ühe vandesõna, siis millise valiksite?",
+				"Mis on kõige veidram asi, mida olete kunagi peegli ees teinud?",
+				"Millal sa jõuluvanasse uskumise lõpetasid?",
+				"Mis on üks kohustus, mida sa sooviksid, et sul ei oleks?",
+				"Kes on parim suudleja, kes sul kunagi olnud on?",
+				"Mis on kõige hirmutavam asi, mida sa kunagi teinud oled?",
+				"Kas sul on kunagi olnud paranormaalseid kogemusi? Täpsusta",
+				"Kas sa oled kunagi pildituks joonud?",
+				"Kas sa usud tulnukatesse?",
+				"Mida sa oled teinud, mille pärast tunned end siiani süüdi?",
+				"Kas sa oled kunagi paljalt ujumas käinud",
+				"Mis on halvim kohting, millel oled olnud?",
+				"Mis on kõige veidram asi, mida sa kunagi võõrale inimesele öelnud oled?",
+				"Mis on kõige veidram asi, mida sa kunagi kogunud oled?",
+				"Keda siin ruumis sa kõige vähem usaldad?",
+				"Mis on kõige ebasobivam aeg, mil olete kunagi naernud?",
+				"Mis on halvim kingitus, mille olete kellelegi teisele teinud?",
+				"Mis on halvim kingitus, mille oled saanud?",
+			];
+			var dares = [
+				"Hüüa välja esimene sõna, mis teile pähe tuleb.",
+				"Helista kellegile ja ütle, et oled kihlunud.",
+				"Tantsige 30 sekundit Snoop Doggi laulu saatel.",
+				"Sulgege silmad kuni järgmise oma korrani.",
+				"Hoidke suus kolme jääkuubikut, kuni need sulavad.",
+				"Tehke paremal pool olevale inimesele jalamassaaži.",
+				"Sulata enda kõrval oleva inimese seljal jää.",
+				"Näidake oma telefonis kõige piinlikumat fotot.",
+				"Lugege oma telefonist 5 viimast tekstisõnumit.",
+				"Proovige küünarnukki lakkuda.",
+				"Järgmise 15 minuti jooksul teesklege, et olete endast vasakule jääv inimene.",
+				"Esinege oma lemmikloomana.",
+				"Rooma mööda tuba ringi.",
+				"Kõhutants Maroko muusika saatel.",
+				"Proovige terve käsi suhu pista.",
+				"Tühjendage oma rahakott või rahakott ja näidake kõigile, mis seal sees on.",
+				"Tee võimalikult inetu nägu.",
+				"Tee kukerpall",
+				"Postitage oma vanim telefoniselfi oma Instagrami loona.",
+				"Ulgu nagu hunt kuu peale.",
+				"Kiruge nagu meremees 30 sekundit järjest.",
+				"Tee võlutrikk.",
+				"Salvestage end laulu laulmas ja postitage see oma sotsiaalmeedia loosse.",
+				"Saatke kellelegi sõnum, kellega te pole aasta aega rääkinud.",
+				"Saatke oma emale tekst 'sa ei usu, mis just juhtus' ja jaga, mida ta vastab.",
+				"Saatke südame-silma emotikon vastuseks kellegi vastasoo Instagrami loole.",
+				"Lõika tükk oma juustest",
+				"Muutke üheks päevaks oma profiilipilt fotoks kus ei näe hea välja.",
+				"Helistage oma telefonis mõnele pereliikmele ja laulge rühma valitud laulu.",
+				"Rääkimine on keelatud! järgmise korrani",
+				"Tee musi lemmiklooma suule.",
+				"Rääkige kõige naljakam lugu sellest, kuidas kohtasite grupis kedagi.",
+				"Tee oma parim moelava kõnnak.",
+				"Proovige oma nina keelega puudutada.Kui te ei saa, peate keelega puudutama teise mängija nina.",
+				"Näita mulle oma parimat tantsuliigutust.",
+				"Tee allapoole suunatud koera poosi.",
+				"Rääkige 2 ringi vastassoo häälega.",
+				"Kallista endast paremal asuvat inimest.",
+				"Proovi breiktantsu teha.",
+				"Seo endal silmad kinni ja võta joo seda, mis sulle kätte antakse.",
+				"Teeskle, et oled baleriin.",
+				"Räpi.",
+				"Silitage kedagi, nagu ta oleks koer.",
+				"Helistage inimesele, kellele viimati sõnumi saatsite, ja lihtsalt mjäu telefoni.",
+				"Tehke oma küünarnukist foto postitage fb-sse või instasse kirjaga 'minu lemmik kehaosa'.",
+				"Laske kõigil rühmaliikmetel oma käele või püsiva markeriga joonistada.",
+				"Näidake, kuidas kujundate oma juukseid hommikul.",
+				"Näidake oma näoilmet pärast millegi ülihapu söömist.",
+				"Järgmise 10 minuti jooksul hoidke rääkimise ajal nina kinni.",
+				"Imiteeri teisest mängijast, kuni keegi saab aru, kes see on.",
+				"Andke oma telefon teisele mängijale, kes saab saata ühele teie kontaktile ühe teksti, milles öeldakse kõike, mida soovib.",
+				"Vaheta riideid vastassoo esindajaga 2 ringiks.",
+				"Helista sõbrale, teeskle, et tal on sünnipäev, ja laula talle sünnipäeva laulu.",
+				"Tee tualetis selfie ja postita see.",
+				"Ütle, mis kuulsusuga sarnaneb iga mängija.",
+				"Keerake ringi 12 korda ja proovige kõndida otse.",
+				"Seo silmad kinni ja puuduta kellegi nägu kuni saad aru, kellega tegu.",
+				"Lase teistel mängijatel oma soeng ümber teha.",
+				"Kuni järgmise ringini räägotsast teise. Vajadusel võite paluda kellelgi teie jalgu hoida.",
+				"Tee planku 30 sekundit.",
+				"Jooge klaasitäis vett ühe korraga.",
+				"Mängu lõpuni täidad kõigi joogiklaasid sina",
+				"Sinust vasakul istuv inimene mõtleb sulle 'teo' välja",
+				"Sinust paremal istuv inimene mõtleb sulle 'teo' välja",
+				"Sa ei tohi juua kuni järmise enda korrani.",
+				"Tee midagi, mida arvad et teised ei saa/oska.",
+				"Seisa ühe jala peal järgmise oma korrani.",
+				"Mängu lõpuni räägi endast kolmandast isikut, iga kord kui eksid võta lonks.",
+				"Mängu lõpuni pead iga kord enne rääkimist kätt töstma, iga kord kui eksid võta lonks.",
+				"Mängu lõpuni pead iga kord korra tõusma, kui keegi naerab, iga kord kui eksid võta lonks.",
+				"Mängu lõpuni pead iga kord enne joomist õhusuudluse saatma,iga kord kui eksid võta lonks.",
+				"Mängu lõpuni pead iga kord kui keegi lauast tõuseb plaksutama, iga kord kui eksid võta lonks.",
+				"Mängu lõpuni ei tohi küünarnukke lauale panna, iga kord kui eksid võta lonks.",
+				"Näita kas saad spagaati teha, kui ei siis palju puudu jääb.",
+				"Joo oma jook lõpuni.",
+				"Joo oma jook lõpuni.",
+				"Joo oma jook lõpuni.",
+				"Joo kellegi teise jook lõpuni.",
+				"Tee midagi ootamatut.",
+				"Tee midagi ootamatut.",
+				"Oma järgmise korrani hoia näpuga nina rullnoka asendis.",
+				"Tõuse rätsepa istest ilma käsi kasutamata püsti.",
+				"Võta suuga maast tikutops, ilma ühtegi kehaosa maha panemata (va jalalabad).",
+				"Mõtle 'tegu' endast vasakul asuvale isikule.",
+				"Mõtle 'tegu' endast paremal asuvale isikule.",
+			];
+
+
+ var allTruths = truths.slice(); // Make a copy of the truths array
+  var allDares = dares.slice(); // Make a copy of the dares array
+  var usedTruths = []; // Keep track of truths that have already been used
+  var usedDares = []; // Keep track of dares that have already been used
+
+  var resultArea = document.getElementById("result"); // Select the result element
+  var random = Math.floor(Math.random() * 2); // Randomly choose between 0 and 1
+
+  if (random == 0) {
+    // Display a truth question
+    if (allTruths.length == 0) {
+      // If all truths have been used, reset the array and start again
+      allTruths = usedTruths.slice();
+      usedTruths = [];
+    }
+    var truthIndex = Math.floor(Math.random() * allTruths.length); // Choose a random index from the remaining truths
+    var truth = allTruths[truthIndex];
+    allTruths.splice(truthIndex, 1); // Remove the truth from the remaining truths
+    usedTruths.push(truth); // Add the truth to the used truths
+    resultArea.innerHTML = "<p class='truth'>" + truth + "</p>"; // Update the result element with the truth
+  } else {
+    // Display a dare challenge
+    if (allDares.length == 0) {
+      // If all dares have been used, reset the array and start again
+      allDares = usedDares.slice();
+      usedDares = [];
+    }
+    var dareIndex = Math.floor(Math.random() * allDares.length); // Choose a random index from the remaining dares
+    var dare = allDares[dareIndex];
+    allDares.splice(dareIndex, 1); // Remove the dare from the remaining dares
+    usedDares.push(dare); // Add the dare to the used dares
+    resultArea.innerHTML = "<p class='dare'>" + dare + "</p>"; // Update the result element with the dare
+  }
+}
+	</script>
+	
+</body>
+</html>

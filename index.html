@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
 
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <head>
@@ -30,6 +31,7 @@
 				width: 100%;
 		}
 		.container {
+			
 			align-items: center !important;
 			text-align: center;
 			justify-content: center;
@@ -91,32 +93,26 @@
     		 
 		}
 		
-		@media only screen and (max-width: 500px) {
-    .reeglid {
-    	width: 100%;
-       font-size: 1.5em !important;
-       display: block;
-       
-    }
-    .container {
-    		 padding: 0 1rem;
-			align-items: center !important;
-			text-align: center;
-			justify-content: center;
-			width: 500px;
-			height: 100%;
-			display: flex;
-        	
-        	display: block;
-    display: inline-block;
-		}
-	.logo {
-		margin-top: 5em;
-    		 
-		}
+		@media screen and (min-width: 1000px) {
+  /* styles for devices with a minimum width of 768px (e.g. desktops) */
+  .container {
+    transform: scale(0.7);
+   margin-top: -15%;
+  }
 }
-	
-	
+
+@media screen and (max-width: 500px) {
+  /* styles for devices with a minimum width of 768px (e.g. desktops) */
+  html {
+   width: 30rem;
+  }
+}
+  
+
+
+
+
+
     		 
 
 	
@@ -124,7 +120,7 @@
 </head>
 <body>
 	<div class="container">
-		<img class="logo" src="tode_tegu.svg" alt="Tõde Tegu" width="750rem" height="auto">
+		<img class="logo" src="pildid/tode_tegu.svg" alt="Tõde Tegu" width="750rem" height="auto">
 		<p class="reeglid">Reeglid: Kui ei soovi vastata/tegu teha siis võta lonks. Kui teist korda järjest ei taha vastata/tegu teha, jood oma joogi lõpuni. 3 korda järjest ei saa vastamata või tegu tegemata jätta.</p>
 		
 		<div class="result" id="result"></div>

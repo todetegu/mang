@@ -331,40 +331,40 @@
 
 
  var allTruths = truths.slice(); // Make a copy of the truths array
-  var allDares = dares.slice(); // Make a copy of the dares array
-  var usedTruths = []; // Keep track of truths that have already been used
-  var usedDares = []; // Keep track of dares that have already been used
+    var allDares = dares.slice(); // Make a copy of the dares array
+    var usedTruths = []; // Keep track of truths that have already been used
+    var usedDares = []; // Keep track of dares that have already been used
 
-  var resultArea = document.getElementById("result"); // Select the result element
-  var random = Math.floor(Math.random() * 2); // Randomly choose between 0 and 1
+    var resultArea = document.getElementById("result"); // Select the result element
+    var random = Math.floor(Math.random() * 2); // Randomly choose between 0 and 1
 
-  if (random == 0) {
-    // Display a truth question
-    if (allTruths.length == 0) {
-      // If all truths have been used, reset the array and start again
-      allTruths = usedTruths.slice();
-      usedTruths = [];
+    if (random == 0) {
+      // Display a truth question
+      if (allTruths.length == 0) {
+        // If all truths have been used, reset the array and start again
+        allTruths = usedTruths.slice();
+        usedTruths = [];
+      }
+      var truthIndex = Math.floor(Math.random() * allTruths.length); // Choose a random index from the remaining truths
+      var truth = allTruths[truthIndex];
+      allTruths.splice(truthIndex, 1); // Remove the truth from the remaining truths
+      usedTruths.push(truth); // Add the truth to the used truths
+      resultArea.innerHTML = "<p class='truth'>" + truth + "</p>"; // Update the result element with the truth
+    } else {
+      // Display a dare challenge
+      if (allDares.length == 0) {
+        // If all dares have been used, reset the array and start again
+        allDares = usedDares.slice();
+        usedDares = [];
+      }
+      var dareIndex = Math.floor(Math.random() * allDares.length); // Choose a random index from the remaining dares
+      var dare = allDares[dareIndex];
+      allDares.splice(dareIndex, 1); // Remove the dare from the remaining dares
+      usedDares.push(dare); // Add the dare to the used dares
+      resultArea.innerHTML = "<p class='dare'>" + dare + "</p>"; // Update the result element with the dare
     }
-    var truthIndex = Math.floor(Math.random() * allTruths.length); // Choose a random index from the remaining truths
-    var truth = allTruths[truthIndex];
-    allTruths.splice(truthIndex, 1); // Remove the truth from the remaining truths
-    usedTruths.push(truth); // Add the truth to the used truths
-    resultArea.innerHTML = "<p class='truth'>" + truth + "</p>"; // Update the result element with the truth
-  } else {
-    // Display a dare challenge
-    if (allDares.length == 0) {
-      // If all dares have been used, reset the array and start again
-      allDares = usedDares.slice();
-      usedDares = [];
-    }
-    var dareIndex = Math.floor(Math.random() * allDares.length); // Choose a random index from the remaining dares
-    var dare = allDares[dareIndex];
-    allDares.splice(dareIndex, 1); // Remove the dare from the remaining dares
-    usedDares.push(dare); // Add the dare to the used dares
-    resultArea.innerHTML = "<p class='dare'>" + dare + "</p>"; // Update the result element with the dare
   }
-}
-	</script>
+</script>
 	
 </body>
 </html>
